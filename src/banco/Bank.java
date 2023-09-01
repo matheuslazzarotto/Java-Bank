@@ -3,28 +3,35 @@ package banco;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Bank{
-	private ArrayList<Account> accounts = new ArrayList<>();
-	
-	public void createAccount(double initialBalance) {
-		Account newAccount = new Account(initialBalance);
-		accounts.add(newAccount);
-		System.out.println("Account created with Account Number: " + newAccount.getAccountNumber());
-	}
-	
-	public Account getAccount(String accountNumber) {
-		for (Account acc : accounts) {
-			if (acc.getAccountNumber().equals(accountNumber)) {
-				return acc;
-			}
-		}
-		
-		return null;
-	}
-	
-	public static void main(String[] args) {
-		Bank myBank = new Bank();
-		Scanner scanner = new Scanner(System.in);
+// Class definition for Bank
+public class Bank {
+    // Private instance variable
+    // ArrayList to store multiple Account objects.
+    private ArrayList<Account> accounts = new ArrayList<>();
+
+    // Public method to create a new Account object.
+    public void createAccount(double initialBalance) {
+        Account newAccount = new Account(initialBalance);  // Create new Account with initial balance.
+        accounts.add(newAccount);  // Add the new Account to the accounts ArrayList.
+        System.out.println("Account created with Account Number: " + newAccount.getAccountNumber());
+    }
+
+    // Public method to get an Account object based on accountNumber.
+    public Account getAccount(String accountNumber) {
+        for (Account acc : accounts) {  // Loop through each Account in the ArrayList.
+            if (acc.getAccountNumber().equals(accountNumber)) {  // Check if the account number matches.
+                return acc;  // Return the matching Account object.
+            }
+        }
+        return null;  // Return null if no Account object is found with the given accountNumber.
+    }
+
+    // Main method to execute the program.
+    public static void main(String[] args) {
+        Bank myBank = new Bank();  // Create a new Bank object.
+        Scanner scanner = new Scanner(System.in);  // Create a Scanner object to take user input.
+
+        // Continuous loop for menu options.
         while (true) {
             System.out.println("Choose an option:");
             System.out.println("1. Create an Account");
@@ -33,7 +40,9 @@ public class Bank{
             System.out.println("4. Check Balance");
             System.out.println("5. Exit");
 
-            int choice = scanner.nextInt();
+            int choice = scanner.nextInt();  // Take the user's menu choice.
+
+            // Switch case to handle menu options.
             switch (choice) {
                 case 1:
                     System.out.println("Enter initial balance: ");
@@ -76,8 +85,8 @@ public class Bank{
                     break;
                 case 5:
                     System.out.println("Goodbye!");
-                    scanner.close();
-                    System.exit(0);
+                    scanner.close();  // Close the Scanner.
+                    System.exit(0);  // Terminate the program.
             }
         }
     }
